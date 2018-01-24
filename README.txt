@@ -1,3 +1,5 @@
+*** Please be advised that this is a new project, so converting the game from C# to C++
+will take some time, thank you for your patience!***
 NinjaStriderCPP is a C++ version of a C# game that I made using monogame. This version
 takes advantage of C++ and SDL.
 
