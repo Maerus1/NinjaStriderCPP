@@ -1,15 +1,20 @@
 #include <iostream>
 #include <SDL.h>
 
+//you need to add parameters to the main function here or else you'll get linker errors
 int main(int argc, char* argv[]) {
+
+	//create window pointer
 	SDL_Window* window;
 	//flag to keep the game loop going
 	bool quit = false;
 	//event listener for window events
 	SDL_Event event; 
 
+	//initialize SDL Video capabilities
 	SDL_Init(SDL_INIT_VIDEO);
 
+	//create and point to the window object
 	window = SDL_CreateWindow(
 		"Ninja Strider",
 		SDL_WINDOWPOS_UNDEFINED,
@@ -30,9 +35,11 @@ int main(int argc, char* argv[]) {
 		while (!quit && SDL_PollEvent(&event)) {
 			switch (event.type) {
 			case SDL_QUIT:
+				//when the game is exited
 				quit = true;
 				break;
 			case SDL_KEYDOWN:
+				//if the user presses the escape key
 				if (event.key.keysym.sym == SDLK_ESCAPE) {
 					quit = true;
 				}
@@ -42,7 +49,10 @@ int main(int argc, char* argv[]) {
 		
 	}
 
+	//delete the window instance
 	SDL_DestroyWindow(window);
+
+	//clean up and destroy the game instance
 	SDL_Quit();
 	return 0;
 }
