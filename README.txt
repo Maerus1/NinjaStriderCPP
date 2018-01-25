@@ -31,4 +31,7 @@ by lineartestpilot
 Projectiles (https://www.spriters-resource.com/pc_computer/marvelavengers/sheet/56221/)
 by Marvel, spritesheet submitted by Cyrus Annihilator
 
+SDL2 is generously provided by https://www.libsdl.org. I do not claim any sort of
+ownership or authorship over the SDL software used in this project.
+
 Enjoy!
