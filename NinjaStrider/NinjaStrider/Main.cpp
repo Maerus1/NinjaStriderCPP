@@ -29,6 +29,37 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	//create the renderer
+	SDL_Renderer* render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	
+	//if the render pointer is null, quit the program
+	if (render == nullptr) {
+		SDL_DestroyWindow(window);
+		std::cout << "Could not create the renderer. Error: " << SDL_GetError();
+		SDL_Quit();
+		return 1;
+	}
+	
+	//create the image
+	SDL_Surface* image = SDL_LoadBMP("Assets/Images/enemy.bmp");
+	if (image == nullptr) {
+		SDL_DestroyRenderer(render);
+		SDL_DestroyWindow(window);
+		std::cout << "Could not load image. Error: " << SDL_GetError();
+		SDL_Quit();
+		//return 1;
+	}
+
+	//Create the texture
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(render, image);
+	if (tex == nullptr) {
+		SDL_DestroyRenderer(render);
+		SDL_DestroyWindow(window);
+		std::cout << "Could not create texture. Error: " << SDL_GetError();
+		SDL_Quit();
+		//return 1;
+	}
+
 	while (!quit) {
 		//use the event variable and actively listen for window
 		//and input events
@@ -46,6 +77,13 @@ int main(int argc, char* argv[]) {
 				break;
 			}
 		}
+		//render the image
+		//clear the renderer first
+		SDL_RenderClear(render);
+		//draw the texture
+		SDL_RenderCopy(render, tex, NULL, NULL);
+		//update screen
+		SDL_RenderPresent(render);
 		
 	}
 
