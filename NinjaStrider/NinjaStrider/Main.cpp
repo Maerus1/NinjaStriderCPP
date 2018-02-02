@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include "Enemy.h"
+#include "Hero.h"
 #include "SDL_image.h"
 
 //you need to add parameters to the main function here or else you'll get linker errors
@@ -70,6 +71,7 @@ int main(int argc, char* argv[]) {
 	
 	//create an Enemy object
 	Enemy* enemy = new Enemy(window, render,"Assets/Images/enemy.png", 50, 50);
+	Hero* hero = new Hero(window, render, "Assets/Images/hero.png", 72, 90);
 
 	while (!quit) {
 		//use the event variable and actively listen for window
@@ -93,6 +95,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(render);
 		//draw the texture
 		SDL_RenderCopy(render, enemy->getTexture(), NULL, &enemy->getRect());
+		SDL_RenderCopy(render, hero->getTexture(), NULL, &hero->getRect());
 		//update screen
 		SDL_RenderPresent(render);
 		
@@ -100,9 +103,11 @@ int main(int argc, char* argv[]) {
 	
 	//free all my memory
 	delete enemy;
+	delete hero;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(render);
 	enemy = nullptr;
+	hero = nullptr;
 	window = nullptr;
 	render = nullptr;
 	//clean up and destroy the game instance

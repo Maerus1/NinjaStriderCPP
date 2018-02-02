@@ -34,14 +34,12 @@ void Sprite::loadTexture(const std::string &file, SDL_Renderer *render)
 }
 
 
-void Sprite::resizeTexture(SDL_Renderer* render,int x, int y, int w, int h) 
+void Sprite::resizeTexture(int x, int y, int w, int h) 
 {
 	rect.x = x;
 	rect.y = y;
 	rect.w = w;
 	rect.h = h;
-
-	SDL_RenderCopy(render, tex, NULL, &rect);
 }
 
 SDL_Rect Sprite::getRect() 
