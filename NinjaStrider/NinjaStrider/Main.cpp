@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "Enemy.h"
+#include "SDL_image.h"
+
 //you need to add parameters to the main function here or else you'll get linker errors
 int main(int argc, char* argv[]) {
 
@@ -20,6 +22,17 @@ int main(int argc, char* argv[]) {
 	//initialize SDL Video capabilities
 	SDL_Init(SDL_INIT_VIDEO);
 
+	//initialize PNG loader to speed up load time
+	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) 
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_RENDER, "%s");
+		std::cout << "PNG loading failed, Error: " << SDL_GetError();
+		window = nullptr;
+		IMG_Quit();
+		SDL_Quit();
+		return 1;
+	}
+
 	//create and point to the window object
 	window = SDL_CreateWindow(
 		"Ninja Strider",
@@ -31,7 +44,12 @@ int main(int argc, char* argv[]) {
 	);
 
 	if (window == NULL) {
+		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "%s");
 		std::cout << "Window creation failed, Error: " << SDL_GetError();
+		SDL_DestroyWindow(window);
+		window = nullptr;
+		IMG_Quit();
+		SDL_Quit();
 		return 1;
 	}
 
@@ -40,8 +58,12 @@ int main(int argc, char* argv[]) {
 	
 	//if the render pointer is null, quit the program
 	if (render == nullptr) {
-		SDL_DestroyWindow(window);
 		std::cout << "Could not create the renderer. Error: " << SDL_GetError();
+		SDL_DestroyWindow(window);
+		SDL_DestroyRenderer(render);
+		render = nullptr;
+		window = nullptr;
+		IMG_Quit();
 		SDL_Quit();
 		return 1;
 	}
@@ -75,11 +97,16 @@ int main(int argc, char* argv[]) {
 		SDL_RenderPresent(render);
 		
 	}
-
-	//delete the window instance
-	SDL_DestroyWindow(window);
+	
+	//free all my memory
 	delete enemy;
+	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(render);
+	enemy = nullptr;
+	window = nullptr;
+	render = nullptr;
 	//clean up and destroy the game instance
+	IMG_Quit();
 	SDL_Quit();
 	return 0;
 }

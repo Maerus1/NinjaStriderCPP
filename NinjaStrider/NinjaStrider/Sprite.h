@@ -10,6 +10,7 @@ public:
 	virtual SDL_Surface* getImage() const = 0;
 	SDL_Texture* getTexture() const;
 	void loadTexture(const std::string &file, SDL_Renderer *render);
+	void resizeTexture(SDL_Renderer* render, int x, int y, int w, int h);
 	SDL_Rect getRect();
 	virtual ~Sprite();
 private:

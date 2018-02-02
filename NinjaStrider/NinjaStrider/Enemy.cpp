@@ -10,6 +10,7 @@ Enemy::Enemy(SDL_Window* window, SDL_Renderer* render, const std::string &file, 
 SDL_Surface* Enemy::getImage() const {
 	return image;
 }
+
 Enemy::~Enemy()
 {
 }
