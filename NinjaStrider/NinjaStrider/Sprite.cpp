@@ -1,25 +1,16 @@
 #include "Sprite.h"
-
+#include "SDL_image.h"
 
 
 Sprite::Sprite() 
 {
 }
-Sprite::Sprite(const char* url, SDL_Window* window, SDL_Renderer* render, int x, int y)
+Sprite::Sprite(SDL_Window* window, SDL_Renderer* render, const std::string &file, int x, int y)
 {
 	//create the image
-	//GET ADDITIONAL LIBRARIES SO I CAN USE DIFFERENT IMAGE TYPES
-	image = SDL_LoadBMP(url);
-	if (image == nullptr) {
-		SDL_DestroyRenderer(render);
-		SDL_DestroyWindow(window);
-		std::cout << "Could not load image. Error: " << SDL_GetError();
-		SDL_Quit();
-		//return 1;
-	}
+	
+	tex = IMG_LoadTexture(render, file.c_str());
 
-	//Create the texture
-	tex = SDL_CreateTextureFromSurface(render, image);
 	if (tex == nullptr) {
 		SDL_DestroyRenderer(render);
 		SDL_DestroyWindow(window);
@@ -32,6 +23,13 @@ Sprite::Sprite(const char* url, SDL_Window* window, SDL_Renderer* render, int x,
 	//get the width and height of the texture
 	SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
 
+}
+
+void Sprite::loadTexture(const std::string &file, SDL_Renderer *render) {
+	tex = IMG_LoadTexture(render, file.c_str());
+	if (tex == nullptr) {
+		SDL_LogError(SDL_LOG_CATEGORY_RENDER, "%s");
+	}
 }
 
 SDL_Rect Sprite::getRect() 

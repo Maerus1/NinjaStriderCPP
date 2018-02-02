@@ -34,11 +34,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Images\enemy.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <None Include="SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SDL2.dll" />
+    <Image Include="Assets\Images\enemy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

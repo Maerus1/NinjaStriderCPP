@@ -6,6 +6,12 @@ int main(int argc, char* argv[]) {
 
 	//create window pointer
 	SDL_Window* window;
+
+	//Screen and tile constants
+	const int SCREEN_WIDTH = 980;
+	const int SCREEN_HEIGHT = 720;
+	const int TILE_SIZE = 40;
+
 	//flag to keep the game loop going
 	bool quit = false;
 	//event listener for window events
@@ -41,7 +47,7 @@ int main(int argc, char* argv[]) {
 	}
 	
 	//create an Enemy object
-	Enemy* enemy = new Enemy("Assets/Images/enemy.bmp", window, render, 50, 50);
+	Enemy* enemy = new Enemy(window, render,"Assets/Images/enemy.png", 50, 50);
 
 	while (!quit) {
 		//use the event variable and actively listen for window

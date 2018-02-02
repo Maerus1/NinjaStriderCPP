@@ -6,9 +6,10 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(const char* url, SDL_Window* window, SDL_Renderer* render,int x, int y);
+	Sprite(SDL_Window* window, SDL_Renderer* render, const std::string &file, int x, int y);
 	virtual SDL_Surface* getImage() const = 0;
 	SDL_Texture* getTexture() const;
+	void loadTexture(const std::string &file, SDL_Renderer *render);
 	SDL_Rect getRect();
 	virtual ~Sprite();
 private:

@@ -6,7 +6,7 @@ class Enemy :
 	public Sprite
 {
 public:
-	Enemy(const char* url, SDL_Window* window, SDL_Renderer* render, int x, int y);
+	Enemy(SDL_Window* window, SDL_Renderer* render, const std::string &file, int x, int y);
 	virtual SDL_Surface* getImage() const;
 	~Enemy();
 };
