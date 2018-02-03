@@ -8,8 +8,9 @@ public:
 	Sprite();
 	Sprite(SDL_Window* window, SDL_Renderer* render, const std::string &file, int x, int y);
 	SDL_Surface* getImage() const;
-	virtual void cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int dstX, int dstY, int srcX, int srcY) = 0;
+	virtual void cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int srcX, int srcY) = 0;
 	SDL_Texture* getTexture() const;
+	void translateSprite(int x, int y);
 	void loadTexture(const std::string &file, SDL_Renderer *render);
 	void resizeTexture(int x, int y, int w, int h);
 

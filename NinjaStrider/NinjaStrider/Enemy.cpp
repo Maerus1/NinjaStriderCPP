@@ -6,12 +6,10 @@ Enemy::Enemy(SDL_Window* window, SDL_Renderer* render, const std::string &file, 
 {
 }
 
-void Enemy::cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int dstX, int dstY, int srcX, int srcY)
+void Enemy::cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int srcX, int srcY)
 {
 	rect.w = dstWidth;
 	rect.h = dstHeight;
-	rect.x = dstX;
-	rect.y = dstY;
 
 	srcRect.w = srcWidth;
 	srcRect.h = srcHeight;

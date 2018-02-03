@@ -5,7 +5,7 @@ class Hero :
 {
 public:
 	Hero(SDL_Window* window, SDL_Renderer* render, const std::string &file, int x, int y);
-	virtual void cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int dstX, int dstY, int srcX, int srcY);
+	virtual void cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int srcX, int srcY);
 	void changeFrame(unsigned int interval);
 	~Hero();
 private:

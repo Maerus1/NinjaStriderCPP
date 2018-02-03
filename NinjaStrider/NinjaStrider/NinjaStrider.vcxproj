@@ -141,8 +141,18 @@
     <None Include="SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Images\about.jpg" />
+    <Image Include="Assets\Images\background.gif" />
+    <Image Include="Assets\Images\credits.jpg" />
     <Image Include="Assets\Images\enemy.png" />
+    <Image Include="Assets\Images\foreground.png" />
+    <Image Include="Assets\Images\gameover.jpg" />
+    <Image Include="Assets\Images\health.png" />
+    <Image Include="Assets\Images\help.jpg" />
     <Image Include="Assets\Images\hero.png" />
+    <Image Include="Assets\Images\highscores.jpg" />
+    <Image Include="Assets\Images\infobar.jpg" />
+    <Image Include="Assets\Images\mainscreen.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

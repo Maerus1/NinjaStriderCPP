@@ -20,6 +20,11 @@ int main(int argc, char* argv[]) {
 	const int HERO_WIDTH = 64;
 	const int HERO_HEIGHT = 79;
 	const unsigned int FRAME_INTERVAL = 60;
+	int heroSpeed = 5;
+
+	//this prevents a delay in movement after the key is first pressed and held
+	bool moveLeft = false;
+	bool moveRight = false;
 
 	//flag to keep the game loop going
 	bool quit = false;
@@ -80,7 +85,7 @@ int main(int argc, char* argv[]) {
 	Hero* hero = new Hero(window, render, "Assets/Images/hero.png", 72, 90);
 
 	//set initial hero sprite frame
-	hero->cropSprite(HERO_WIDTH, HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT, 50, 100, 0, 0);
+	hero->cropSprite(HERO_WIDTH, HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT, 0, 0);
 	while (!quit) {
 		//use the event variable and actively listen for window
 		//and input events
@@ -98,9 +103,44 @@ int main(int argc, char* argv[]) {
 				{
 					quit = true;
 				}
+				if (event.key.keysym.sym == SDLK_a &&
+					event.key.keysym.sym != SDLK_d)
+				{
+					//if I put the translation of the sprite
+					//directly in here, there would be a little
+					//delay after the first keypress and hold
+					moveLeft = true;
+					moveRight = false;
+				}
+				else if (event.key.keysym.sym == SDLK_d &&
+						 event.key.keysym.sym != SDLK_a)
+				{
+					moveRight = true;
+					moveLeft = false;
+				}
+				break;
+			case SDL_KEYUP:
+				if (event.key.keysym.sym == SDLK_a || 
+					event.key.keysym.sym == SDLK_d)
+				{
+					//in order to stop movement
+					moveLeft = false;
+					moveRight = false;
+				}
 				break;
 			}
 		}
+		if (moveLeft) 
+		{
+			hero->translateSprite(-heroSpeed, 0);
+		}
+		else if (moveRight) 
+		{
+			hero->translateSprite(heroSpeed, 0);
+		}
+
+		
+
 		//render the image
 		//clear the renderer first
 		SDL_RenderClear(render);

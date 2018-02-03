@@ -49,5 +49,35 @@
     <Image Include="Assets\Images\hero.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\Images\mainscreen.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\about.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\background.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\credits.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\foreground.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\gameover.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\health.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\help.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\highscores.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\infobar.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

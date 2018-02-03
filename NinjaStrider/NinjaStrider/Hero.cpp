@@ -6,12 +6,10 @@ Hero::Hero(SDL_Window* window, SDL_Renderer* render, const std::string &file, in
 {
 }
 
-void Hero::cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int dstX, int dstY, int srcX, int srcY)
+void Hero::cropSprite(int srcWidth, int srcHeight, int dstWidth, int dstHeight, int srcX, int srcY)
 {
 	rect.w = dstWidth;
 	rect.h = dstHeight;
-	rect.x = dstX;
-	rect.y = dstY;
 
 	srcRect.w = srcWidth;
 	srcRect.h = srcHeight;
@@ -30,7 +28,7 @@ void Hero::changeFrame(unsigned int interval)
 	if (currentTime > previousTime + interval)
 	{
 		//update hero sprite frame
-		this->cropSprite(heroWidth, heroHeight, heroWidth, heroHeight, 50, 100,
+		this->cropSprite(heroWidth, heroHeight, heroWidth, heroHeight,
 			++frameSwitcher * heroWidth, 0);
 		previousTime = currentTime;
 		if (frameSwitcher >= 9)

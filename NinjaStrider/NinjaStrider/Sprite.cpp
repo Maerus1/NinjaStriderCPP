@@ -46,6 +46,12 @@ void Sprite::resizeTexture(int x, int y, int w, int h)
 	rect.h = h;
 }
 
+void Sprite::translateSprite(int x, int y) 
+{
+	rect.x += x;
+	rect.y += y;
+}
+
 SDL_Rect Sprite::getDstRect() 
 {
 	return rect;
