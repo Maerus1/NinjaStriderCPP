@@ -15,6 +15,12 @@ int main(int argc, char* argv[]) {
 	const int SCREEN_HEIGHT = 720;
 	const int TILE_SIZE = 40;
 
+	//some constants for the hero
+	//sprite and animating it
+	const int HERO_WIDTH = 64;
+	const int HERO_HEIGHT = 79;
+	const unsigned int FRAME_INTERVAL = 60;
+
 	//flag to keep the game loop going
 	bool quit = false;
 	//event listener for window events
@@ -73,18 +79,23 @@ int main(int argc, char* argv[]) {
 	Enemy* enemy = new Enemy(window, render,"Assets/Images/enemy.png", 50, 50);
 	Hero* hero = new Hero(window, render, "Assets/Images/hero.png", 72, 90);
 
+	//set initial hero sprite frame
+	hero->cropSprite(HERO_WIDTH, HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT, 50, 100, 0, 0);
 	while (!quit) {
 		//use the event variable and actively listen for window
 		//and input events
-		while (!quit && SDL_PollEvent(&event)) {
-			switch (event.type) {
+		while (!quit && SDL_PollEvent(&event)) 
+		{
+			switch (event.type) 
+			{
 			case SDL_QUIT:
 				//when the game is exited
 				quit = true;
 				break;
 			case SDL_KEYDOWN:
 				//if the user presses the escape key
-				if (event.key.keysym.sym == SDLK_ESCAPE) {
+				if (event.key.keysym.sym == SDLK_ESCAPE) 
+				{
 					quit = true;
 				}
 				break;
@@ -93,12 +104,14 @@ int main(int argc, char* argv[]) {
 		//render the image
 		//clear the renderer first
 		SDL_RenderClear(render);
+		
 		//draw the texture
-		SDL_RenderCopy(render, enemy->getTexture(), NULL, &enemy->getRect());
-		SDL_RenderCopy(render, hero->getTexture(), NULL, &hero->getRect());
+		SDL_RenderCopy(render, hero->getTexture(), &hero->getSrcRect(), &hero->getDstRect());
 		//update screen
 		SDL_RenderPresent(render);
 		
+		//updates the frame of the sprite at a regular interval
+		hero->changeFrame(FRAME_INTERVAL);
 	}
 	
 	//free all my memory

@@ -24,6 +24,10 @@ Sprite::Sprite(SDL_Window* window, SDL_Renderer* render, const std::string &file
 	SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
 
 }
+SDL_Surface* Sprite::getImage() const
+{
+	return image;
+}
 
 void Sprite::loadTexture(const std::string &file, SDL_Renderer *render) 
 {
@@ -42,11 +46,15 @@ void Sprite::resizeTexture(int x, int y, int w, int h)
 	rect.h = h;
 }
 
-SDL_Rect Sprite::getRect() 
+SDL_Rect Sprite::getDstRect() 
 {
 	return rect;
 }
 
+SDL_Rect Sprite::getSrcRect()
+{
+	return srcRect;
+}
 SDL_Texture* Sprite::getTexture() const
 {
 	return tex;
